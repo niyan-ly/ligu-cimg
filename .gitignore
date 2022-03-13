@@ -1,0 +1,5 @@
+build/
+xcode-gen/
+*.o
+.libs/
+.DS_Store
