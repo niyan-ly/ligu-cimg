@@ -1,3 +1,5 @@
+#pragma once
+
 #define cimg_use_cpp11 1
 #define cimg_OS 0
 #define cimg_use_jpeg

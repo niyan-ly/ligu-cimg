@@ -3,6 +3,8 @@ project(cimg-wasm VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 11)
 
+include_directories(/Users/branson/devtools/emsdk/upstream/emscripten/system/include)
+
 find_package(PNG)
 find_package(JPEG)
 
@@ -26,6 +28,7 @@ add_library(cimg-wasm
 )
 target_link_libraries(cimg-wasm ${SYSTEM_LIBS})
 
-add_executable(basic
+add_executable(test
   src/test.cc
 )
+target_link_libraries(test ${SYSTEM_LIBS})

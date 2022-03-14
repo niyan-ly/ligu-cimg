@@ -3,3 +3,5 @@ xcode-gen/
 *.o
 .libs/
 .DS_Store
+idl/*.cpp
+idl/*.js
