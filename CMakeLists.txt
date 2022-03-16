@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(cimg-wasm VERSION 1.0.0)
+project(ligu-cimg VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -23,10 +23,10 @@ if(PNG_FOUND)
 endif()
 include_directories(include)
 
-add_library(cimg-wasm
-  src/cimg-wasm.cc
+add_library(ligu-cimg
+  src/ligu-cimg.cc
 )
-target_link_libraries(cimg-wasm ${SYSTEM_LIBS})
+target_link_libraries(ligu-cimg ${SYSTEM_LIBS})
 
 add_executable(test
   src/test.cc

@@ -1,3 +1,3 @@
 #include<cstdlib>
-#include "cimg-wasm.h"
+#include "ligu-cimg.h"
 #include "connect.cpp"

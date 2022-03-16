@@ -1,3 +1,5 @@
+lib_name = ligu-cimg
+
 zlib_path = ./deps/libpng/deps/zlib-1.2.11
 zlib_build_path = $(zlib_path)/build
 
@@ -7,9 +9,11 @@ jpeg_build_path = $(jpeg_path)/.libs
 png_path = ./deps/libpng
 png_build_path = $(png_path)/build
 
-source_files = src/cimg-wasm.cc src/idl-wrapper.cc
+source_files = src/$(lib_name).cc src/idl-wrapper.cc
 
-emcc_opt = -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=_malloc --post-js idl/connect.js
+js_exported = _malloc
+
+emcc_opt = -s MODULARIZE=1 -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=$(js_exported) --post-js idl/connect.js --js-library src/extern.js
 
 cxx_link = -lpng -ljpeg -lz -L$(zlib_build_path) -L$(jpeg_build_path) -L$(png_build_path)
 
@@ -23,7 +27,7 @@ declare-jconfig:
 	cp ./include/jconfig.h ./deps/jpeg-9e
 
 build-lib:
-	emcc -o cimg-wasm.js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
+	emcc -o out/$(lib_name).js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
 
 build-jpeg-lib:
 	cd ./deps/jpeg-9e && \
@@ -47,7 +51,7 @@ build-zlib:
 
 idl-gen:
 	cd ./idl && \
-	webidl_binder cimg-wasm.idl connect
+	webidl_binder $(lib_name).idl connect
 
 clean-idl:
 	cd ./idl && \

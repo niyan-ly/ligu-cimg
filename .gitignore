@@ -1,7 +1,8 @@
 build/
-xcode-gen/
+xcode/
 *.o
 .libs/
 .DS_Store
 idl/*.cpp
 idl/*.js
+out/
