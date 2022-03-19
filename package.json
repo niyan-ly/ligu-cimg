@@ -1,5 +1,5 @@
 {
-  "name": "ligu-cimg",
+  "name": "@niyan_ly/ligu-cimg",
   "version": "1.0.0",
   "description": "CImg wasm binding for simple purpose image processing on Node",
   "main": "./out/index.js",
@@ -13,6 +13,7 @@
     "README.md",
     "type.d.dts"
   ],
+  "repository": "git@github.com:niyan-ly/ligu-cimg.git",
   "keywords": [],
   "author": "hapulb@gmail.com",
   "license": "ISC",
