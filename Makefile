@@ -17,6 +17,11 @@ emcc_opt = -s MODULARIZE=1 -s EXPORTED_RUNTIME_METHODS=FS -s ALLOW_MEMORY_GROWTH
 
 cxx_link = -lpng -ljpeg -lz -L$(zlib_build_path) -L$(jpeg_build_path) -L$(png_build_path)
 
+emcc_path = $(shell which emcc)
+emcc_toolchain_path = $(shell dirname $(emcc_path))
+
+webidl_binder_bin = $(emcc_toolchain_path)/tools/webidl_binder
+
 default_target: all
 
 all: build-jpeg build-zlib build-png idl-gen build-lib
@@ -55,7 +60,7 @@ build-zlib:
 
 idl-gen:
 	cd ./idl && \
-	webidl_binder $(lib_name).idl connect
+	$(webidl_binder_bin) $(lib_name).idl connect
 
 clean-idl:
 	cd ./idl && \
@@ -69,4 +74,3 @@ clean-zlib:
 
 clean-png:
 	rm -rf ./deps/libpng/build
-	
