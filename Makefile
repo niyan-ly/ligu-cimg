@@ -24,9 +24,12 @@ webidl_binder_bin = $(emcc_toolchain_path)/tools/webidl_binder
 
 default_target: all
 
-all: build-jpeg build-zlib build-png idl-gen build-lib
+all: prepare-out build-jpeg build-zlib build-png idl-gen build-lib
 
 clean: clean-png clean-zlib clean-jpeg clean-idl
+
+prepare-out:
+	mkdir -p out
 
 declare-jconfig:
 	cp ./include/jconfig.h ./deps/jpeg-9e
