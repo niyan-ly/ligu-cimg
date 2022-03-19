@@ -5,16 +5,12 @@ on:
     types: [created]
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: mymindstorm/setup-emsdk@v11
       - run: emcc --version
-
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
+      - run: sudo apt install dos2unix
       - uses: actions/checkout@v3.0.0
       - run: make
 
