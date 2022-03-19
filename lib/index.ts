@@ -33,7 +33,7 @@ export async function loadLigu(): Promise<{
     };
     const fromBuffer: FromBuffer = (buffer, fileType) => {
       const f_type = fileType.toLowerCase();
-      assert([".jpeg", ".png"].includes(f_type));
+      assert([".jpeg", ".png", ".jpg"].includes(f_type));
 
       const cimg = new wasmModule.CImgWASM8Bit();
       const ins = new Ligu(cimg, wasmModule);

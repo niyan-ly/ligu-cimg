@@ -43,7 +43,7 @@ export interface CImgWASM8Bit {
     sigmaY: number,
     sigmaZ: number,
     boundary_conditions?: number,
-    is_gaussian?: number
+    is_gaussian?: boolean
   ): void;
   crop(
     x0: number,

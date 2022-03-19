@@ -15,7 +15,7 @@ export class Ligu {
   drawCircle: CImgWASM8Bit['draw_circle'];
   resizeHalfXY: CImgWASM8Bit['resize_halfXY'];
   resizeDoubleXY: CImgWASM8Bit['resize_doubleXY'];
-  draw_plasma: CImgWASM8Bit['draw_plasma'];
+  drawPlasma: CImgWASM8Bit['draw_plasma'];
 
   get width(): number {
     return this.cimg.width();
@@ -39,7 +39,7 @@ export class Ligu {
     this.drawCircle = cimg.draw_circle.bind(cimg);
     this.resizeHalfXY = cimg.resize_halfXY.bind(cimg);
     this.resizeDoubleXY = cimg.resize_doubleXY.bind(cimg);
-    this.draw_plasma = cimg.draw_plasma.bind(cimg);
+    this.drawPlasma = cimg.draw_plasma.bind(cimg);
   }
 
   /**
@@ -73,7 +73,7 @@ export class Ligu {
     this.cimg.blur_symmetric(sigma, 1, gaussion);
   }
 
-  blur(sigmaHorizontal: number, sigmaVertical: number, gaussian?: number) {
+  blur(sigmaHorizontal: number, sigmaVertical: number, gaussian?: boolean) {
     this.cimg.blur(sigmaHorizontal, sigmaVertical, 0, 1, gaussian);
   }
 
