@@ -12,7 +12,7 @@ jobs:
       - run: emcc --version
 
   build:
-    need: setup
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
