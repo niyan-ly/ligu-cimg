@@ -1,5 +1,5 @@
 {
-  "name": "@niyan_ly/ligu-cimg",
+  "name": "@niyan-ly/ligu-cimg",
   "version": "1.0.0",
   "description": "CImg wasm binding for simple purpose image processing on Node",
   "main": "./out/index.js",
