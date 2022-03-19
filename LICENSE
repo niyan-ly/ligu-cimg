@@ -19,3 +19,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This library also includes third party dependencies with their own license, which includes:
+
+- CImgs
+    under includes/Cimg.h with license cimg-Licence_CeCILL_V2-en.txt.
+- libpng
+    under deps/libpng with license LICENSE
+- libjpeg
+    under deps/jpeg-9e

@@ -27,15 +27,16 @@ declare-jconfig:
 	cp ./include/jconfig.h ./deps/jpeg-9e
 
 build-lib:
-	emcc -o out/$(lib_name).js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
+	emcc -g -o out/$(lib_name).js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
 
-build-jpeg-lib:
+configure-jpeg-lib:
 	cd ./deps/jpeg-9e && \
-	emconfigure ./configure --disable-dependency-tracking && \
-	dos2unix -f ./libtool && \
-	emmake make
+	emconfigure ./configure --disable-dependency-tracking --disable-shared && \
+	dos2unix -f ./libtool
 
-build-jpeg: build-jpeg-lib declare-jconfig
+build-jpeg: configure-jpeg-lib declare-jconfig
+	cd ./deps/jpeg-9e && \
+	emmake make
 
 build-png:
 	cd  ./deps/libpng && \
@@ -52,6 +53,9 @@ build-zlib:
 idl-gen:
 	cd ./idl && \
 	webidl_binder $(lib_name).idl connect
+
+copy-out:
+	cp out/* ./lib/
 
 clean-idl:
 	cd ./idl && \

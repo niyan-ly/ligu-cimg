@@ -6,3 +6,4 @@ xcode/
 idl/*.cpp
 idl/*.js
 out/
+node_modules/

@@ -8,18 +8,35 @@ interface CImgWASM8Bit {
   void CImgWASM8Bit();
 
   void assign(unsigned long x, unsigned long y, unsigned long z, unsigned long c);
+  long offset(long x, optional long y, optional long z, optional long c);
+  octet atXY(long x, long y);
+  octet atXYZC(long x, long y, long z, long c);
+  void autocrop();
   void blur_symmetric(float sigma, optional unsigned long boundary_conditions, optional boolean is_gaussian);
   void blur(float sigma_x, float sigma_y, float sigma_z, optional unsigned short boundary_conditions, optional boolean is_gaussian);
+  void crop(long x0, long y0, long z0, long c0, long x1, long y1, long z1, long c1);
   void fill(octet val, optional octet val2, optional octet val3, optional octet val4);
-  void fillC(unsigned short x, unsigned short y, unsigned short z, octet c1, optional octet c2, optional octet c3);
+  void fillC(unsigned short x, unsigned short y, unsigned short z, octet cr, optional octet cg, optional octet cb, optional octet ca);
   any data();
-  void draw_image([Ref] CImgWASM8Bit t);
-  void draw_text(long x0, long y0, DOMString text, octet[] foreground_color, octet[] background_color, float opacity);
+  void draw_arrow(long x0, long y0, long x1, long y1, octet[] colour);
+  void draw_axes(float x0, float x1, float y0, float y1, octet[] colour);
+  void draw_image(long x0, long y0, long z0, long c0, [Ref] CImgWASM8Bit t, optional float opacity);
+  void draw_line(long x0, long y0, long x1, long y1, octet[] color, optional float opacity, optional unsigned long pattern, optional boolean init_hatch);
+  void draw_text(long x0, long y0, DOMString text, octet[] foreground_color);
+  void draw_text(long x0, long y0, DOMString text, octet[] foreground_color, octet[] background_color);
+  void draw_text(long x0, long y0, DOMString text, octet[] foreground_color, octet[] background_color, float opacity, unsigned long font_height);
   void draw_rectangle(long x0, long y0, long x1, long y1, octet[] color, optional float opacity);
+  void draw_ellipse(long x0, long y0, float r1, float r2, float angle, octet[] colour, optional float opacity);
   void draw_circle(long x0, long y0, long radius, octet[] color);
-  void draw_fill(long x, long y, long z, octet[] color, optional float opacity);
+  void draw_fill(long x, long y, octet[] color);
+  void draw_polygon([Ref] CImgWASM32Bit points, octet[] color, float opacity);
+  void draw_polygon([Ref] CImgWASM32Bit points, octet[] color, float opacity, unsigned long pattern);
   void save(DOMString filename);
+  void save_jpeg(DOMString filename, long quality);
+  void save_png(DOMString filename);
   void resize(long x, optional long y, optional long z, optional long c, optional long algorithm_t, optional unsigned short condition, optional float cx, optional float cy, optional float cz, optional float cc);
+  void load(DOMString filename);
+  void x_set_data(octet value, unsigned long x, optional unsigned long y, optional unsigned long z, optional unsigned long c);
 
   // customized
   [Value] ImgStat exportPNG();
@@ -31,7 +48,30 @@ interface CImgWASM8Bit {
   long depth();
   long size();
 
+  void draw_plasma();
   void invert();
   void resize_halfXY();
   void resize_doubleXY();
+  void CMYtoRGB();
+  void CMYKtoCMY();
+  void CMYKtoRGB();
+  void RGBtoCMY();
+  void RGBtoCMYK();
+  void HSLtoRGB();
+  void RGBtoHSL();
+  void LabtoRGB();
+  void LabtoXYZ();
+  void XYZtoLab();
+  void XYZtoRGB();
+  void XYZtoxyY();
+  void RGBtoHSI();
+  void RGBtoHSV();
+  void RGBtoLab();
+  void RGBtoXYZ();
+};
+
+interface CImgWASM32Bit {
+  void assign(unsigned long x, unsigned long y, unsigned long z, unsigned long c);
+  
+  void x_set_data(long long value, unsigned long x, optional unsigned long y, optional unsigned long z, optional unsigned long c);
 };

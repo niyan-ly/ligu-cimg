@@ -1,0 +1,25 @@
+{
+  "name": "ligu",
+  "version": "1.0.0",
+  "description": "Light-weight utility for simple purpose image processing on Node",
+  "main": "./out/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "out/",
+    "lib/",
+    "README.md",
+    "type.d.dts"
+  ],
+  "keywords": [],
+  "author": "hapulb@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.21"
+  }
+}
