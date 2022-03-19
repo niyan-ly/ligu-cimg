@@ -27,6 +27,9 @@ declare-jconfig:
 	cp ./include/jconfig.h ./deps/jpeg-9e
 
 build-lib:
+	emcc -o out/$(lib_name).js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
+
+debug-lib:
 	emcc -g -o out/$(lib_name).js $(emcc_opt) $(cxx_link) -I$(zlib_path) -Iinclude -Iidl -I$(zlib_build_path) -I$(jpeg_path) -I$(png_path) -I$(png_build_path) $(source_files)
 
 configure-jpeg-lib:
