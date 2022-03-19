@@ -57,9 +57,6 @@ idl-gen:
 	cd ./idl && \
 	webidl_binder $(lib_name).idl connect
 
-copy-out:
-	cp out/* ./lib/
-
 clean-idl:
 	cd ./idl && \
 	rm *.cpp *.js

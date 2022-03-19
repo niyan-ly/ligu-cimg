@@ -1,7 +1,7 @@
 {
-  "name": "ligu",
+  "name": "ligu-cimg",
   "version": "1.0.0",
-  "description": "Light-weight utility for simple purpose image processing on Node",
+  "description": "CImg wasm binding for simple purpose image processing on Node",
   "main": "./out/index.js",
   "scripts": {
     "build": "tsc",

@@ -1,0 +1,33 @@
+name: Github Package Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mymindstorm/setup-emsdk@v11
+      - run: emcc --version
+
+  build:
+    need: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.0
+      - run: make
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.0
+      - uses: actions/setup-node@v3.0.0
+        with:
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
