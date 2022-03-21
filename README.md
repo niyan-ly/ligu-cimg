@@ -10,14 +10,19 @@ This library should be works consistently across any platforms that Node.js v12 
 
 ### Setup
 This package is published on `Github Packages`, so you will need a `github token` to access this package via `npm`.
-Please refer to this [document](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package) to see how to install a package from github.
+Please refer to this [document](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package) to see how to install a package from github. And please do be careful with this library since it is more like a toy and may have unpredictable bugs🎃.
 
 ```shell
 npm i @ninyan-ly/ligu-cimg # from github packages registry
 ```
 
-### Build from source(working in progress)
-That's another story to be accomplished.
+### Build from source
+Third-party dependencies like `libpng`, `libjpeg` & `zlib` has already been included in this repo. Hence, if you want to build `ligu` from source, the only requirement is `emscripten` toolchain.
+
+> Note: `libpng` is forked from https://github.com/emscripten-ports/libpng
+
+- clone this repo
+- run `make` and have yourself a cup of tea.
 
 ### Load Ligu
 After loading wasm module, there are three ways to initialize an instance, which includes `fromFile` `fromSize` and `fromBuffer`.
@@ -72,7 +77,7 @@ image height
 #### Property: `channel` readonly
 number of color channel
 #### Property: `cimg`: CImgWASM8Bit
-instance of `CImg` wasm binding. You can call `CImg` api directly from this instance.
+instance of `CImg` wasm binding, which provides `CImg` api accessibility.
 
 #### Method: `exportPNG()`
 export ligu instance data as an `png` image. Return a `Uint8Array` buffer.
@@ -132,4 +137,4 @@ draw 2d line
 #### Method: `drawCircle(x0: number, y0: number, radius: number, color: number[])`
 
 #### Method: `drawPlasma()`
-draw `plasma` effect.
+draw `plasma` visual effect.

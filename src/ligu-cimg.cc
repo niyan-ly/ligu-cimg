@@ -1,3 +1,4 @@
+#include <sys/stat.h>
 #include "ligu-cimg.h"
 
 ImgStat read_f_data(char *f_name)

@@ -5,7 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include <random>
-#include <sys/stat.h>
 #include "overriden.h"
 #include "CImg.h"
 
