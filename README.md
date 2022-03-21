@@ -25,7 +25,7 @@ Third-party dependencies like `libpng`, `libjpeg` & `zlib` has already been incl
 - run `make` and have yourself a cup of tea.
 
 ### Load Ligu
-After loading wasm module, there are three ways to initialize an instance, which includes `fromFile` `fromSize` and `fromBuffer`.
+There are three ways to initialize an instance, which includes `fromFile` `fromSize` and `fromBuffer`.
 ```ts
 import { resolve } from 'path';
 import { createWriteStream } from "fs";
@@ -33,7 +33,7 @@ import { loadLigu } from '@niyan-ly/ligu-cimg';
 
 loadLigu().then(({ fromFile }) => {
   console.time("duration");
-  const img = fromFile(resolve(__dirname, "./source-pic.jpg"));
+  const img = fromFile(resolve(__dirname, "./source-pic.png"));
 
   const foregroundRGBA = [85, 123, 131];
   // 0 alias as NULL pointer.
@@ -51,12 +51,33 @@ loadLigu().then(({ fromFile }) => {
     fontSize
   );
 
+  // export as jpeg at a lower quality
   const pngBuffer = img.exportJPEG(40);
 
   console.timeEnd("duration");
   createWriteStream("lower-quality.jpeg").write(pngBuffer);
 });
 ```
+
+#### crop and resize
+
+```ts
+loadLigu().then(({ fromFile }) => {
+  const img = fromFile(resolve(__dirname, "./source-pic.png"));
+  const { width, height } = img;
+
+  img.resizeDoubleXY();
+  // crop from top-left
+  img.crop(0, 0, width, height);
+  // blur horizontally and vertically with different intensity
+  img.blur(10, 20);
+
+  img.exportJPEG(80);
+});
+```
+
+#### cimg api
+See more `CImg` api binding from `idl/ligu-cimg.idl`;
 
 ### fromFile(filename: string)
 create an instance from a file.
